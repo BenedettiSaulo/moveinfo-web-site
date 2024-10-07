@@ -14,7 +14,7 @@
         "runtime": "Runtime",
         "production_countries": "Production countries",
         "production_companies": "Production companies",
-        "watch": "Watch",
+        "find": "Find the movie",
         "more_info": "More info",
         "close": "Close"
     },
@@ -33,7 +33,7 @@
         "runtime": "Duração",
         "production_countries": "Países de produção",
         "production_companies": "Produtoras",
-        "watch": "Assistir",
+        "find": "Encontrar filme",
         "more_info": "Mais informações",
         "close": "Fechar"
     }

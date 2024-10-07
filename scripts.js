@@ -64,7 +64,7 @@ async function getCards(idCategoria, genre) {
                             <li class="information"><p class="pInformation"><b class="bInformation">${translations[language].overview}:</b> ${movie.overview}</p></li>
                         </ul>
                         <div class="card-buttons">
-                            <button type="button" class="btn btn-danger" onclick="watch(${movie.id})">${translations[language].watch}</button>
+                            <button type="button" class="btn btn-danger" onclick="findById(${movie.id})">${translations[language].find}</button>
                             <button type="button" class="btn btn-danger" onclick="moreInfo(${movie.id})">${translations[language].more_info}</button>
                         </div>
                     </div>
@@ -85,7 +85,7 @@ function getDefaultCards(genre) {
     getCards(28, genre);
 }
 
-async function watch(movieId) {
+async function findById(movieId) {
 
     console.log(movieId);
 
@@ -138,7 +138,7 @@ async function moreInfo(movieId) {
                         <p class="pInformation"><b class="bInformation">${translations[language].overview}:</b> ${response.overview}</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="watch('${response.homepage}')">${translations[language].watch}</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="find('${response.homepage}')">${translations[language].find}</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">${translations[language].close}</button>
                     </div>
                 </div>
@@ -175,7 +175,7 @@ function textFormater(textList) {
     return formaterText;
 }
 
-function watch(homepage) {
+function find(homepage) {
 
     window.open(homepage, '_blank');
 }
