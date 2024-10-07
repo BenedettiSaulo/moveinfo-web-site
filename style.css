@@ -1,0 +1,114 @@
+body {
+    background-color: black;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.container-fluid {
+    background-color: black;
+    margin-top: 30px;
+}
+
+#hTitle {
+    background-color: black;
+    padding-bottom: 30px;
+    color: red;
+}
+
+.genres {
+    text-align: left;
+    padding: 10px 70px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+    border: none;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-img-top {
+    background-color: white;
+    height: 350px;
+    max-width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    object-fit: contain;
+    object-position: center;
+}
+
+.card-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 20px;
+    padding: 15px;
+}
+
+.informations {
+    background-color: white;
+    color: black;
+}
+
+.information {
+    background-color: white;
+    color: black;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+}
+
+.pInformation {
+    background-color: white;
+    color: black;
+    margin-bottom: 0;
+}
+
+.bInformation {
+    background-color: white;
+    color: black;
+}
+
+.card-title {
+    background-color: white;
+    color: black;
+    font-size: 1.5rem;
+}
+
+.card-buttons {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: auto;
+}
+
+#dCards .col-4 {
+    display: flex;
+    justify-content: center;
+}
+
+.modal-content {
+    color: black;
+}
+
+.modal-header {
+    flex-direction: column;
+}
+
+.modal-footer {
+    justify-content: space-between;
+}

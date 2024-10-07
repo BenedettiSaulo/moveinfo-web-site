@@ -1,0 +1,40 @@
+{
+    "en-US": {
+        "genre_title": "Genres",
+        "genre": "Genre",
+        "genres": "Genres",
+        "release_date": "Release date",
+        "popularity": "Popularity",
+        "vote_average": "Vote average",
+        "vote_count": "Vote count",
+        "overview": "Overview",
+        "original_title": "Original title",
+        "original_language": "Original language",
+        "revenue": "Revenue",
+        "runtime": "Runtime",
+        "production_countries": "Production countries",
+        "production_companies": "Production companies",
+        "watch": "Watch",
+        "more_info": "More info",
+        "close": "Close"
+    },
+    "pt-BR": {
+        "genre_title": "Gêneros",
+        "genre": "Gênero",
+        "genres": "Gêneros",
+        "release_date": "Data de lançamento",
+        "popularity": "Popularidade",
+        "vote_average": "Média de votos",
+        "vote_count": "Quantidade de votos",
+        "overview": "Sinopse",
+        "original_title": "Título original",
+        "original_language": "Linguagem original",
+        "revenue": "Receita",
+        "runtime": "Duração",
+        "production_countries": "Países de produção",
+        "production_companies": "Produtoras",
+        "watch": "Assistir",
+        "more_info": "Mais informações",
+        "close": "Fechar"
+    }
+}
