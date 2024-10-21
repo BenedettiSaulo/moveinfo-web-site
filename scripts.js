@@ -50,7 +50,7 @@ async function getCards(idCategoria, genre) {
     response.results.forEach(movie => {
 
         const card = `
-            <div class="col-4">
+            <div class="col-12 col-sm-6 col-lg-4">
                 <div class="card">
                     <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" class="card-img-top" alt="Poster filme">
                     <div class="card-body">
