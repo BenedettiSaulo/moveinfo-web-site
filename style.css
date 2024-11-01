@@ -5,9 +5,81 @@ body {
     padding: 0;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
+.btn-leng {
+    background-color: #b20710;
+    color: #000;
+    font-weight: bold;
+    transition: transform 0.2s;
+
+}
+
+.btn-leng:hover {
+    border: 1px;
+    border-style: solid;
+    border-color: #fff;
+}
+
+.btn-english {
+    margin-right: 10px;
+}
+
+
+
+.sidebar .fs-4 {
+    font-weight: bold;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow-y: auto;
+    width: 200px;
+    padding-top: 20px;
+    background-color: rgb(36, 34, 34);
+    transition: width 0.3s;
+}
+
+.sidebar .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: #fff;
+    cursor: pointer;
+    font-size: medium;
+}
+
+.sidebar .description {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #b20710;
+    color: black;
+}
+
+.sidebar .nav-link .be {
+    color: #fff;
+}
+
+.active {
+    background-color: #b20710;
+    color: black;
+}
+
+.main-content {
+    height: 100%;
+    margin-left: 200px;
+}
+
 .container-fluid {
     background-color: black;
-    margin-top: 30px;
 }
 
 #hTitle {
@@ -27,43 +99,29 @@ body {
 
 .card {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    flex-wrap: wrap;
     background-color: white;
     border: none;
-    border-radius: 20px;
-    width: 100%;
+    border-radius: 10px;
+    width: auto;
     height: 100%;
     transition: transform 0.2s;
 }
 
 .card:hover {
+    cursor: pointer;
+    border: 2px;
+    border-style: solid;
+    border-color: white;
     transform: scale(1.05);
 }
 
 .card-img-top {
     background-color: white;
-    height: 350px;
-    max-width: 100%;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    object-fit: contain;
-    object-position: center;
-}
-
-.card-body {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: white;
-    border-radius: 20px;
-    /* padding: 15px; */
-}
-
-.informations {
-    background-color: white;
-    color: black;
+    width: 100%;
+    height: auto;
+    border: none;
+    border-radius: 10px;
 }
 
 .information {
@@ -85,26 +143,6 @@ body {
     color: black;
 }
 
-.card-title {
-    background-color: white;
-    color: black;
-    font-size: 1.5rem;
-}
-
-.card-buttons {
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-top: auto;
-}
-
-#dCards .col-4 {
-    display: flex;
-    justify-content: center;
-}
-
 .modal-content {
     color: black;
 }
@@ -115,4 +153,23 @@ body {
 
 .modal-footer {
     justify-content: space-between;
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 60px;
+        overflow-y: auto;
+    }
+
+    .sidebar .description {
+        display: none;
+    }
+
+    .sidebar .nav-link {
+        justify-content: center;
+    }
+
+    .main-content {
+        margin-left: 60px;
+    }
 }

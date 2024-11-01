@@ -20,26 +20,43 @@ async function getGenres() {
 
     const response = await fetch(url).then(r => r.json()).catch(() => console.log('Error when acquiring genres.'));
 
-    var childs = '';
+    var childs = `
+        <a id="item-title" class="nav-link" onclick="getDefaultCards()">
+            <span class="icon">
+                <i class="bi bi-grid"></i>
+            </span>
+            <span class="description">${translations[language].genre_title}</span>
+        </a>
+        <hr>
+        <a id="item-home" class="nav-link active" aria-current="page" onclick="getDefaultCards()">
+            <span class="icon">
+                <i class="fa-solid fa-house"></i>
+            </span>
+            <span class="description">Home</span>
+        </a>
+    `;
 
-    response.genres.forEach(genre => childs += `<button type="button" class="list-group-item list-group-item-action" onclick="getCards('${genre.id}', '${genre.name}')">${genre.name}</button>`);
+    response.genres.forEach(genre => childs += `
+        
+        <a id="item-${genre.name}" class="nav-link" aria-current="page" onclick="getCards('${genre.id}', '${genre.name}')">
+            <span class="icon">
+                ${getIcon(genre.id)}
+            </span>
+            <span class="description">${genre.name}</span>
+        </a>
+        
+    `);
 
-    const divGenre = document.getElementById('divGenre');
+    const ulGenre = document.getElementById('ulGenre');
 
-    const hGenTitle = document.getElementById('hGenTitle');
+    ulGenre.innerHTML = childs;
 
-    hGenTitle.innerHTML = translations[language].genre_title;
-
-    divGenre.innerHTML = childs;
-
-    getDefaultCards(response.genres[0].name);
+    getDefaultCards();
 }
 
 async function getCards(idCategoria, genre) {
 
     const language = localStorage.getItem('language') || navigator.language;
-
-    const translations = await fetch('./translations/translations.json').then(r => r.json()).catch(() => console.log('Error acquiring translations.'));
 
     const url = `https://api.themoviedb.org/3/discover/movie?with_genres=${idCategoria}&api_key=a8fe6d7128055d4d27a7f2fcf680bc6f&language=${language}`;
 
@@ -50,24 +67,9 @@ async function getCards(idCategoria, genre) {
     response.results.forEach(movie => {
 
         const card = `
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="card">
+            <div class="col-12 col-sm-8 col-md-6 col-lg-4 col-xl-2 col-xxl-1">
+                <div class="card" onclick="moreInfo(${movie.id})">
                     <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" class="card-img-top" alt="Poster filme">
-                    <div class="card-body">
-                        <h5 class="card-title">${movie.title}</h5>
-                        <ul class="informations">
-                            <li class="information"><p class="pInformation"><b class="bInformation">${translations[language].genre}:</b> ${genre}</p></li>
-                            <li class="information"><p class="pInformation"><b class="bInformation">${translations[language].release_date}:</b> ${movie.release_date}</p></li>
-                            <li class="information"><p class="pInformation"><b class="bInformation">${translations[language].popularity}:</b> ${movie.popularity}</p></li>
-                            <li class="information"><p class="pInformation"><b class="bInformation">${translations[language].vote_average}:</b> ${movie.vote_average}</p></li>
-                            <li class="information"><p class="pInformation"><b class="bInformation">${translations[language].vote_count}:</b> ${movie.vote_count}</p></li>
-                            <li class="information"><p class="pInformation"><b class="bInformation">${translations[language].overview}:</b> ${movie.overview}</p></li>
-                        </ul>
-                        <div class="card-buttons">
-                            <button type="button" class="btn btn-danger" onclick="findById(${movie.id})">${translations[language].find}</button>
-                            <button type="button" class="btn btn-danger" onclick="moreInfo(${movie.id})">${translations[language].more_info}</button>
-                        </div>
-                    </div>
                 </div>    
             </div>
         `;
@@ -77,18 +79,51 @@ async function getCards(idCategoria, genre) {
 
     const dCards = document.getElementById('dCards');
 
+    Array.from(document.getElementsByClassName('nav-link active')).forEach(item => item.setAttribute('class', 'nav-link text-white'));
+    
+    const aSelectedItem = document.getElementById(`item-${genre}`);
+    aSelectedItem.setAttribute('class', 'nav-link active');
+
     dCards.innerHTML = childs;
 }
 
-function getDefaultCards(genre) {
+async function getDefaultCards() {
 
-    getCards(28, genre);
+    const language = localStorage.getItem('language') || navigator.language;
+
+    const url = `https://api.themoviedb.org/3/discover/movie?api_key=a8fe6d7128055d4d27a7f2fcf680bc6f&language=${language}`;
+
+    const response = await fetch(url).then(r => r.json()).catch(() => console.log('Error when acquiring gender!'));
+
+    var childs = '';
+
+    response.results.forEach(movie => {
+
+        const card = `
+            <div class="col-12 col-sm-8 col-md-6 col-lg-4 col-xl-2 col-xxl-1">
+                <div class="card" onclick="moreInfo(${movie.id})">
+                    <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" class="card-img-top" alt="Poster filme">
+                </div>    
+            </div>
+        `;
+
+        childs += card;
+    })
+
+    const dCards = document.getElementById('dCards');
+
+    Array.from(document.getElementsByClassName('nav-link active')).forEach(item => item.setAttribute('class', 'nav-link text-white'));
+    
+    const aSelectedItem = document.getElementById(`item-home`);
+    aSelectedItem.setAttribute('class', 'nav-link active');
+
+    dCards.innerHTML = childs;
+
 }
 
 async function findById(movieId) {
 
     console.log(movieId);
-
 
     const language = localStorage.getItem('language') || navigator.language;
 
@@ -178,4 +213,48 @@ function textFormater(textList) {
 function find(homepage) {
 
     window.open(homepage, '_blank');
+}
+
+function getIcon(genreId) {
+
+    switch (genreId) {
+        case 28:
+            return '<i class="fa-solid fa-burst"></i>';
+        case 12:
+            return '<i class="fas fa-map"></i>';
+        case 16:
+            return '<i class="bi bi-palette"></i>';
+        case 35:
+            return '<i class="bi bi-emoji-laughing"></i>';
+        case 80:
+            return '<i class="bi bi-shield-shaded"></i>';
+        case 99:
+            return '<i class="bi bi-journal-text"></i>';
+        case 18:
+            return '<i class="bi bi-people"></i>';
+        case 10751:
+            return '<i class="bi bi-house-heart-fill"></i>';
+        case 14:
+            return '<i class="bi bi-moon-stars"></i>';
+        case 36:
+            return '<i class="bi bi-book-half"></i>';
+        case 27:
+            return '<i class="bi bi-emoji-dizzy"></i>';
+        case 10402:
+            return '<i class="bi bi-music-note-beamed"></i>';
+        case 9648:
+            return '<i class="bi bi-question-circle"></i>';
+        case 10749:
+            return '<i class="bi bi-heart-fill"></i>';
+        case 878:
+            return '<i class="bi bi-robot"></i>';
+        case 10770:
+            return '<i class="bi bi-tv-fill"></i>';
+        case 53:
+            return '<i class="bi bi-mask"></i>';
+        case 10752:
+            return '<i class="bi bi-shield-fill"></i>';
+        case 37:
+            return '<i class="fas fa-gun"></i>';
+    }
 }
